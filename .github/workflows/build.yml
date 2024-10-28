@@ -31,7 +31,7 @@ jobs:
             ./packages/admin/src-tauri/target
             
     - name: Install Node.js
-    - uses: actions/setup-node@v4
+      uses: actions/setup-node@v4
       with:
         node-version: 'latest'
 
@@ -44,14 +44,15 @@ jobs:
       run: |
         sudo apt-get update
         sudo apt-get upgrade -y --no-install-recommends webkit2gtk-4.0
+        
     - name: Install Node.js dependencies
       run: npm install
 
-    - name: Download Rust dependencies
-      run: cargo fetch --manifest-path=packages/admin/src-tauri/Cargo.toml
+    - name: Install Tauri CLI
+      run: cargo install tauri-cli # Install Tauri dependencies
 
     - name: Build application
-      run: npm run build:tauri
+      run: npm run build
 
     - name: Upload release artifacts
       uses: actions/upload-artifact@v4
