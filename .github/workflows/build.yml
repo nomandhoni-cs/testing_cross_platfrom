@@ -2,9 +2,9 @@ name: Build Tauri Meteor Template.
 
 on:
   push:
-    branches: [ tauri-compilation ]
+    branches: [ master ]
   pull_request:
-    branches: [ tauri-compilation ]
+    branches: [ master ]
 
 jobs:
   build:
