@@ -29,13 +29,11 @@ jobs:
             ~/.cargo/registry/cache
             ~/.cargo/git
             ./packages/admin/src-tauri/target
+            
     - name: Install Node.js
-      uses: actions/setup-node@v2
+    - uses: actions/setup-node@v4
       with:
-        node-version: 16
-        cache: npm
-        cache-dependency-path: |
-          package-lock.json
+        node-version: 'latest'
 
     - name: 🦀 Install Rust
       uses: actions-rs/toolchain@v1
