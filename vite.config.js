@@ -1,6 +1,6 @@
-import { defineConfig, splitVendorChunkPlugin  } from 'vite'
+import { defineConfig, splitVendorChunkPlugin } from 'vite';
 import { NodeGlobalsPolyfillPlugin } from "@esbuild-plugins/node-globals-polyfill";
-import react from '@vitejs/plugin-react'
+import react from '@vitejs/plugin-react';
 import inject from '@rollup/plugin-inject';
 import nodePolyfills from "rollup-plugin-polyfill-node";
 
@@ -11,6 +11,7 @@ const libraries = [
 ];
 
 import { dependencies } from './package.json';
+
 function renderChunks(deps) {
   let chunks = {};
   Object.keys(deps).forEach((key) => {
@@ -44,7 +45,7 @@ export default defineConfig({
   },
   envPrefix: ['VITE_', 'TAURI_PLATFORM', 'TAURI_ARCH', 'TAURI_FAMILY', 'TAURI_PLATFORM_VERSION', 'TAURI_PLATFORM_TYPE', 'TAURI_DEBUG'],
   build: {
-    target: ['es2021', 'chrome100', 'safari13'],
+    target: ['esnext'],  // Updated target to support top-level await
     rollupOptions: {
       plugins: [
         inject({ Buffer: ['buffer', 'Buffer'] }),
@@ -80,4 +81,4 @@ export default defineConfig({
       ]
     }
   },
-})
+});
